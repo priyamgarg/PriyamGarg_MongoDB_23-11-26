@@ -1,0 +1,315 @@
+PS C:\Users\gargp> mongosh "mongodb+srv://cluster0.clhdxhd.mongodb.net/" --apiVersion 1 --username 2024pceaitpriyam37_db_user
+Enter password: ******
+Current Mongosh Log ID: 6b03bf59c086d289b7064ed0
+Connecting to:          mongodb+srv://<credentials>@cluster0.clhdxhd.mongodb.net/?appName=mongosh+2.10.0
+Using MongoDB:          8.0.39 (API Version 1)
+Using Mongosh:          2.10.0
+mongosh 2.14.3 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+Atlas atlas-cb6i7f-shard-0 [primary] test> use company
+switched to db company
+Atlas atlas-cb6i7f-shard-0 [primary] company> db.employees.insertMany([
+|     {
+|         empId: 1,
+|         name: "Anita",
+|         dept: "HR",
+|         salary: 42000,
+|         city: "Chennai"
+|     },
+|     {
+|         empId: 2,
+|         name: "Bala",
+|         dept: "IT",
+|         salary: 65000,
+|         city: "Bengaluru"
+|     },
+|     {
+|         empId: 3,
+|         name: "Charan",
+|         dept: "IT",
+|         salary: 72000,
+|         city: "Chennai"
+|     },
+|     {
+|         empId: 4,
+|         name: "Deepa",
+|         dept: "Finance",
+|         salary: 50000,
+|         city: "Mumbai"
+|     },
+|     {
+|         empId: 5,
+|         name: "Elan",
+|         dept: "IT",
+|         salary: 72000,
+|         city: "Chennai"
+|     },
+|     {
+|         empId: 6,
+|         name: "Farah",
+|         dept: "HR",
+|         salary: 45000,
+|         city: "Delhi"
+|     },
+|     {
+|         empId: 7,
+|         name: "Gopal",
+|         dept: "Finance",
+|         salary: 61000,
+|         city: "Chennai"
+|     },
+|     {
+|         empId: 8,
+|         name: "Hema",
+|         dept: "HR",
+|         salary: 38000,
+|         city: "Hyderabad"
+|     }
+| ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6b03bf87c086d289b7064ed1'),
+    '1': ObjectId('6b03bf87c086d289b7064ed2'),
+    '2': ObjectId('6b03bf87c086d289b7064ed3'),
+    '3': ObjectId('6b03bf87c086d289b7064ed4'),
+    '4': ObjectId('6b03bf87c086d289b7064ed5'),
+    '5': ObjectId('6b03bf87c086d289b7064ed6'),
+    '6': ObjectId('6b03bf87c086d289b7064ed7'),
+    '7': ObjectId('6b03bf87c086d289b7064ed8')
+  }
+}
+Atlas atlas-cb6i7f-shard-0 [primary] company> db.employees.find({
+|     salary: { $gt: 60000 }
+| })
+[
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed2'),
+    empId: 2,
+    name: 'Bala',
+    dept: 'IT',
+    salary: 65000,
+    city: 'Bengaluru'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed3'),
+    empId: 3,
+    name: 'Charan',
+    dept: 'IT',
+    salary: 72000,
+    city: 'Chennai'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed5'),
+    empId: 5,
+    name: 'Elan',
+    dept: 'IT',
+    salary: 72000,
+    city: 'Chennai'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed7'),
+    empId: 7,
+    name: 'Gopal',
+    dept: 'Finance',
+    salary: 61000,
+    city: 'Chennai'
+  }
+]
+Atlas atlas-cb6i7f-shard-0 [primary] company> db.employees.find({
+|     salary: {
+|         $gte: 45000,
+|         $lte: 60000
+|     }
+| })
+[
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed4'),
+    empId: 4,
+    name: 'Deepa',
+    dept: 'Finance',
+    salary: 50000,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed6'),
+    empId: 6,
+    name: 'Farah',
+    dept: 'HR',
+    salary: 45000,
+    city: 'Delhi'
+  }
+]
+Atlas atlas-cb6i7f-shard-0 [primary] company> db.employees.find({
+|     dept: { $in: ["IT", "Finance"] }
+| })
+[
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed2'),
+    empId: 2,
+    name: 'Bala',
+    dept: 'IT',
+    salary: 65000,
+    city: 'Bengaluru'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed3'),
+    empId: 3,
+    name: 'Charan',
+    dept: 'IT',
+    salary: 72000,
+    city: 'Chennai'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed4'),
+    empId: 4,
+    name: 'Deepa',
+    dept: 'Finance',
+    salary: 50000,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed5'),
+    empId: 5,
+    name: 'Elan',
+    dept: 'IT',
+    salary: 72000,
+    city: 'Chennai'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed7'),
+    empId: 7,
+    name: 'Gopal',
+    dept: 'Finance',
+    salary: 61000,
+    city: 'Chennai'
+  }
+]
+Atlas atlas-cb6i7f-shard-0 [primary] company> db.employees.find({
+|     salary: { $gt: 50000 }
+| })
+[
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed2'),
+    empId: 2,
+    name: 'Bala',
+    dept: 'IT',
+    salary: 65000,
+    city: 'Bengaluru'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed3'),
+    empId: 3,
+    name: 'Charan',
+    dept: 'IT',
+    salary: 72000,
+    city: 'Chennai'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed5'),
+    empId: 5,
+    name: 'Elan',
+    dept: 'IT',
+    salary: 72000,
+    city: 'Chennai'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed7'),
+    empId: 7,
+    name: 'Gopal',
+    dept: 'Finance',
+    salary: 61000,
+    city: 'Chennai'
+  }
+]
+Atlas atlas-cb6i7f-shard-0 [primary] company> db.employees.find({
+|     city: { $nin: ["Chennai", "Bengaluru"] }
+| })
+[
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed4'),
+    empId: 4,
+    name: 'Deepa',
+    dept: 'Finance',
+    salary: 50000,
+    city: 'Mumbai'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed6'),
+    empId: 6,
+    name: 'Farah',
+    dept: 'HR',
+    salary: 45000,
+    city: 'Delhi'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed8'),
+    empId: 8,
+    name: 'Hema',
+    dept: 'HR',
+    salary: 38000,
+    city: 'Hyderabad'
+  }
+]
+Atlas atlas-cb6i7f-shard-0 [primary] company> db.employees.find({
+|     name: { $regex: "^[ABC]", $options: "i" }
+| })
+[
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed1'),
+    empId: 1,
+    name: 'Anita',
+    dept: 'HR',
+    salary: 42000,
+    city: 'Chennai'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed2'),
+    empId: 2,
+    name: 'Bala',
+    dept: 'IT',
+    salary: 65000,
+    city: 'Bengaluru'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed3'),
+    empId: 3,
+    name: 'Charan',
+    dept: 'IT',
+    salary: 72000,
+    city: 'Chennai'
+  }
+]
+Atlas atlas-cb6i7f-shard-0 [primary] company> db.employees.find()
+|     .sort({ salary: -1 })
+|     .skip(2)
+|     .limit(3)
+[
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed2'),
+    empId: 2,
+    name: 'Bala',
+    dept: 'IT',
+    salary: 65000,
+    city: 'Bengaluru'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed7'),
+    empId: 7,
+    name: 'Gopal',
+    dept: 'Finance',
+    salary: 61000,
+    city: 'Chennai'
+  },
+  {
+    _id: ObjectId('6b03bf87c086d289b7064ed4'),
+    empId: 4,
+    name: 'Deepa',
+    dept: 'Finance',
+    salary: 50000,
+    city: 'Mumbai'
+  }
+]
+Atlas atlas-cb6i7f-shard-0 [primary] company>
